@@ -1,0 +1,37 @@
+= form_for @reminder do |f|
+  - if @reminder.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@reminder.errors.count, "error")} prohibited this reminder from being saved:"
+      %ul
+        - @reminder.errors.full_messages.each do |message|
+          %li= message
+
+.form-group
+  = f.label :name
+  = f.text_field
+  = f.error_span(:name)
+.form-group
+  = f.label :email
+    .col-lg-10
+      = f.text_field :email
+    = f.error_span(:email)
+.form-group
+  = f.label :time, "Time and Date"
+  .col-lg-2
+    = time_select :reminder, :time
+  .col-lg-4
+    = date_select :reminder, :time
+  .col-lg-2
+    = f.time_zone_select :time_zone, ActiveSupport::TimeZone.all.sort, default: "Pacific Time (US & Canada)"
+  = f.error_span(:time)
+.form-group
+  .col-lg-offset-2
+    = f.submit nil
+    = link_to t('.cancel, :default => t("helpers.links.cancel")),
+      reminders_path
+
+
+
+
+  .actions
+    = f.submit 'Save'

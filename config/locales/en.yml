@@ -252,6 +252,8 @@ en:
       index: Projects
       new: New Project
       edit: Edit Project
+    reminder:
+      index: Reminders
     users:
       index: Users
     reports:
